@@ -1,19 +1,37 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+
+import saveToLocal from './lib/saveToLocal';
+import loadFromLocal from './lib/loadFromLocal';
 import ProductForm from './ProductForm';
 import ProductCard from './ProductCard';
 
 function App() {
-  const [products, setProducts] = useState([]);
+  const STORAGE_KEY = 'Products';
+  const [products, setProducts] = useState(loadFromLocal(STORAGE_KEY) ?? []);
 
-  const addProduct = (product) =>
+  useEffect(() => {
+    saveToLocal(STORAGE_KEY, products);
+  }, [products]);
+
+  const addProduct = (product) => {
     setProducts([...products, { ...product, id: uuidv4() }]);
-  console.log(products);
+  };
+
+  const deleteCard = (id) => {
+    const listSansDeletedCard = products.filter((product) => product.id !== id);
+    setProducts(listSansDeletedCard);
+  };
+
   return (
     <div>
-      <ProductForm submitFunction={addProduct} />
+      <ProductForm onSubmitForm={addProduct} />
       {products.map((product) => (
-        <ProductCard product={product} />
+        <ProductCard
+          product={product}
+          key={product.id}
+          onDeleteCard={() => deleteCard(product.id)}
+        />
       ))}
     </div>
   );

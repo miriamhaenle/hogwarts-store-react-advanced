@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components/macro';
-
 import Button from './Button';
 
-export default function ProductForm({ submitFunction }) {
+export default function ProductForm({ onSubmitForm }) {
   const initialProduct = {
     name: '',
     price: '',
@@ -19,17 +18,32 @@ export default function ProductForm({ submitFunction }) {
   const handleChange = (event) => {
     const field = event.target;
     let value = event.target.value;
-    console.log(event.target.type);
+
     if (event.target.type === 'checkbox') {
       value = event.target.checked;
     }
-
     setProduct({ ...product, [field.name]: value });
   };
 
+  const isValidProductName = (name) => name.length >= 3;
+  const isValidPrice = (price) => price > 0;
+  const isValidEmail = (email) => email.includes('@');
+
+  const isValidProductEntry = (product) =>
+    isValidProductName(product.name) && isValidPrice(product.price);
   function submitForm(event) {
     event.preventDefault();
-    submitFunction(product);
+    if (isValidProductEntry(product)) {
+      console.log('valid');
+      onSubmitForm(product);
+      setProduct(initialProduct);
+    } else {
+      console.error('Not a valid product entry' + product);
+    }
+  }
+
+  function resetForm() {
+    console.log('call me maybe');
     setProduct(initialProduct);
   }
 
@@ -147,7 +161,7 @@ export default function ProductForm({ submitFunction }) {
       </label>
       <Buttons>
         <Button text="Add" color="#DDA3B2" />
-        <Button type="reset" text="Cancel" />
+        <Button type="reset" text="Cancel" handlerFn={resetForm} />
       </Buttons>
     </Form>
   );

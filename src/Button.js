@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
-export default function Button({ text, color, type }) {
+export default function Button({ text, color, type, handlerFn = () => {} }) {
   return (
-    <ButtonStyled background={color} type={type ? type : 'submit'}>
+    <ButtonStyled
+      background={color}
+      type={type ? type : 'submit'}
+      onClick={handlerFn}
+    >
       {text}
     </ButtonStyled>
   );
