@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components/macro';
 
+import Button from './Button';
+
 export default function ProductForm({ submitFunction }) {
   const initialProduct = {
     name: '',
@@ -34,6 +36,7 @@ export default function ProductForm({ submitFunction }) {
   return (
     <Form onSubmit={submitForm}>
       <h2>Add new Product</h2>
+
       <label htmlFor="name">Product Name</label>
       <input
         type="text"
@@ -41,23 +44,28 @@ export default function ProductForm({ submitFunction }) {
         value={product.name}
         onChange={handleChange}
       />
-      <div>
-        <label htmlFor="price">Price</label>
-        <input
-          type="number"
-          name="price"
-          value={product.price}
-          onChange={handleChange}
-        />
-        <label htmlFor="currency">Currency</label>
-        <input
-          type="text"
-          name="currency"
-          value={product.currency}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
+      <Pricing>
+        <label>
+          Price
+          <input
+            type="number"
+            name="price"
+            value={product.price}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Currency
+          <input
+            type="text"
+            name="currency"
+            value={product.currency}
+            onChange={handleChange}
+          />
+        </label>
+      </Pricing>
+
+      <Category>
         <label htmlFor="category">Category</label>
         <select
           name="category"
@@ -71,50 +79,55 @@ export default function ProductForm({ submitFunction }) {
           <option value="wear">Wear</option>
           <option value="sweets">Sweets</option>
         </select>
-      </div>
-      <div>
+      </Category>
+
+      <PackageSize>
         Package size
-        <label>
-          <input
-            type="radio"
-            name="packageSize"
-            value="S"
-            checked={product.packageSize === 'S'}
-            onChange={handleChange}
-          />
-          S
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="packageSize"
-            value="M"
-            checked={product.packageSize === 'M'}
-            onChange={handleChange}
-          />
-          M
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="packageSize"
-            value="L"
-            checked={product.packageSize === 'L'}
-            onChange={handleChange}
-          />
-          L
-        </label>
-      </div>
-      <div>
-        <label htmlFor="name">Support contact(email)</label>
+        <div>
+          <label>
+            <input
+              type="radio"
+              name="packageSize"
+              value="S"
+              checked={product.packageSize === 'S'}
+              onChange={handleChange}
+            />
+            S
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="packageSize"
+              value="M"
+              checked={product.packageSize === 'M'}
+              onChange={handleChange}
+            />
+            M
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="packageSize"
+              value="L"
+              checked={product.packageSize === 'L'}
+              onChange={handleChange}
+            />
+            L
+          </label>
+        </div>
+      </PackageSize>
+
+      <Support>
+        <label htmlFor="supportContact">Support contact(email)</label>
         <input
           type="email"
-          name="email"
+          name="supportContact"
           value={product.email}
           onChange={handleChange}
         />
-      </div>
-      <div>
+      </Support>
+
+      <Tags>
         <label htmlFor="tags">Product Tags</label>
         <input
           type="text"
@@ -122,7 +135,7 @@ export default function ProductForm({ submitFunction }) {
           value={product.tags}
           onChange={handleChange}
         />
-      </div>
+      </Tags>
       <label>
         <input
           type="checkbox"
@@ -132,8 +145,10 @@ export default function ProductForm({ submitFunction }) {
         />
         On sale
       </label>
-      <button>Add</button>
-      <button type="reset">Cancel</button>
+      <Buttons>
+        <Button text="Add" color="#DDA3B2" />
+        <Button type="reset" text="Cancel" />
+      </Buttons>
     </Form>
   );
 }
@@ -143,4 +158,66 @@ const Form = styled.form`
   gap: 1rem;
   max-width: 500px;
   margin: 0 auto;
+
+  input[type='checkbox'] {
+    transform: scale(1.4);
+    margin-right: 0.5rem;
+  }
+`;
+
+const Pricing = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+  }
+  input {
+    margin-top: 1rem;
+  }
+`;
+
+const Category = styled.div`
+  display: grid;
+  gap: 1rem;
+`;
+
+const PackageSize = styled.section`
+  div {
+    display: flex;
+  }
+
+  label {
+    margin-right: 0.5rem;
+  }
+
+  input {
+    margin-top: 1rem;
+  }
+`;
+
+const Support = styled.div`
+  display: grid;
+
+  input {
+    margin-top: 1rem;
+  }
+`;
+
+const Tags = styled.div`
+  display: grid;
+  input {
+    margin-top: 1rem;
+  }
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+
+  button {
+    width: 48%;
+  }
 `;
