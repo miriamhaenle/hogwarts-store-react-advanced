@@ -175,7 +175,7 @@ export default function ProductForm({ onSubmitForm }) {
 const Form = styled.form`
   background: #764248;
   display: grid;
-  gap: 1rem;
+  gap: 0.5rem;
   max-width: 500px;
   margin: 0 auto;
 
@@ -219,7 +219,7 @@ const PackageSize = styled.section`
   }
 
   input {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
 `;
 
@@ -227,7 +227,7 @@ const Support = styled.div`
   display: grid;
 
   input {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
 `;
 
