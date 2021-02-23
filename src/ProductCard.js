@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 
 export default function ProductCard({ product, onDeleteCard }) {
@@ -14,8 +13,8 @@ export default function ProductCard({ product, onDeleteCard }) {
       <div>Contact: {product.supportContact}</div>
 
       <Tags>
-        {product.tags.map((tag) => (
-          <li>{tag}</li>
+        {product.tags.map((tag, index) => (
+          <li key={tag + index}>{tag}</li>
         ))}
       </Tags>
       {product.onSale && <Sale>ON SALE</Sale>}

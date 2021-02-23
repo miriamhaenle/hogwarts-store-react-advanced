@@ -35,6 +35,12 @@ export default function ProductForm({ onSubmitForm }) {
     setProduct({ ...product, tags: updatedTags });
   };
 
+  const deleteLastTag = () => {
+    const updatedTags = product.tags.slice(0, -1);
+
+    setProduct({ ...product, tags: updatedTags });
+  };
+
   // const isValidProductName = (name) => name.length >= 3;
   // const isValidPrice = (price) => price > 0;
   // const isValidEmail = (email) => email.includes('@');
@@ -163,6 +169,7 @@ export default function ProductForm({ onSubmitForm }) {
         onUpdateTags={updateTags}
         onDeleteTag={deleteTag}
         headline="Product tags"
+        onDeleteLastTag={deleteLastTag}
       />
       <label>
         <input

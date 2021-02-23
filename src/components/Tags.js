@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
+export default function Tags({
+  headline,
+  tags,
+  onUpdateTags,
+  onDeleteTag,
+  onDeleteLastTag,
+}) {
   const [tagInput, setTagInput] = useState('');
 
   console.log(tagInput, 'Tag input');
@@ -15,6 +21,12 @@ export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
       event.preventDefault();
       onUpdateTags(tagInput.toUpperCase());
       setTagInput('');
+    }
+
+    if (event.key === 'Backspace') {
+      event.preventDefault();
+      console.log('delete');
+      onDeleteLastTag();
     }
   };
 
