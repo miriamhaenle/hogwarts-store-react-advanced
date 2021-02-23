@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 export default function ProductCard({ product, onDeleteCard }) {
@@ -25,6 +26,7 @@ export default function ProductCard({ product, onDeleteCard }) {
 const Card = styled.div`
   background: #e3c5bb;
   border-radius: 5px;
+  color: #183642;
   max-width: 500px;
   margin: 1rem auto;
   padding: 1.5rem;
@@ -68,6 +70,7 @@ const Tags = styled.ul`
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
+  visibility: none;
   li {
     list-style: none;
     background: #183642;
