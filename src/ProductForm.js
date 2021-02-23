@@ -30,6 +30,11 @@ export default function ProductForm({ onSubmitForm }) {
   const updateTags = (tag) =>
     setProduct({ ...product, tags: [...product.tags, tag] });
 
+  const deleteTag = (tagToDelete) => {
+    const updatedTags = product.tags.filter((tag) => tag !== tagToDelete);
+    setProduct({ ...product, tags: updatedTags });
+  };
+
   // const isValidProductName = (name) => name.length >= 3;
   // const isValidPrice = (price) => price > 0;
   // const isValidEmail = (email) => email.includes('@');
@@ -153,7 +158,11 @@ export default function ProductForm({ onSubmitForm }) {
         />
       </Support>
 
-      <Tags tags={product.tags} onUpdateTags={updateTags} />
+      <Tags
+        tags={product.tags}
+        onUpdateTags={updateTags}
+        onDeleteTag={deleteTag}
+      />
       <label>
         <input
           type="checkbox"

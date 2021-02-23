@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-export default function Tags({ tags, onUpdateTags }) {
+export default function Tags({ tags, onUpdateTags, onDeleteTag }) {
   const [tagInput, setTagInput] = useState('');
 
   console.log(tagInput, 'Tag input');
@@ -32,7 +32,10 @@ export default function Tags({ tags, onUpdateTags }) {
       </Input>
       <TagsContainer>
         {tags?.map((tag, index) => (
-          <Tag key={index + tag}>{tag}</Tag>
+          <Tag key={index + tag}>
+            {tag}
+            <span onClick={() => onDeleteTag(tag)}>&times;</span>
+          </Tag>
         ))}
       </TagsContainer>
     </div>
