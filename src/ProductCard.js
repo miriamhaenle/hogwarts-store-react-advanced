@@ -12,8 +12,11 @@ export default function ProductCard({ product, onDeleteCard }) {
       <div>Package size: {product.packageSize}</div>
       <div>Contact: {product.supportContact}</div>
 
-      <ul>{product.tag}</ul>
-
+      <Tags>
+        {product.tags.map((tag) => (
+          <li>{tag}</li>
+        ))}
+      </Tags>
       {product.onSale && <Sale>ON SALE</Sale>}
     </Card>
   );
@@ -57,5 +60,20 @@ const Sale = styled.span`
     transform: rotate(23deg);
     color: #aeffd8;
     background: #183642;
+  }
+`;
+
+const Tags = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  li {
+    list-style: none;
+    background: #183642;
+    color: #aeffd8;
+    margin: 0.2rem;
+    padding: 0.4rem 0.2rem 0.2rem;
+    display: inline;
   }
 `;

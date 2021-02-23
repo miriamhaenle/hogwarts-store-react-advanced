@@ -55,5 +55,4 @@ const Tag = styled.span`
   color: #183642;
   margin: 0.2rem;
   padding: 0.4rem 0.2rem 0.2rem;
-  position: relative;
 `;
