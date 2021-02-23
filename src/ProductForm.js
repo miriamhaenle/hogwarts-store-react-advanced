@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components/macro';
 import Button from './Button';
+import Tags from './components/Tags';
 
 export default function ProductForm({ onSubmitForm }) {
   const initialProduct = {
@@ -22,8 +23,12 @@ export default function ProductForm({ onSubmitForm }) {
     if (event.target.type === 'checkbox') {
       value = event.target.checked;
     }
+
     setProduct({ ...product, [field.name]: value });
   };
+
+  const updateTags = (tag) =>
+    setProduct({ ...product, tags: [...product.tags, tag] });
 
   const isValidProductName = (name) => name.length >= 3;
   const isValidPrice = (price) => price > 0;
@@ -31,15 +36,18 @@ export default function ProductForm({ onSubmitForm }) {
 
   const isValidProductEntry = (product) =>
     isValidProductName(product.name) && isValidPrice(product.price);
+
   function submitForm(event) {
     event.preventDefault();
-    if (isValidProductEntry(product)) {
-      console.log('valid');
-      onSubmitForm(product);
-      setProduct(initialProduct);
-    } else {
-      console.error('Not a valid product entry' + product);
-    }
+    onSubmitForm(product);
+    setProduct(initialProduct);
+
+    // if (isValidProductEntry(product)) {
+    //   onSubmitForm(product);
+    //   setProduct(initialProduct);
+    // } else {
+    //   console.error('Not a valid product entry' + product);
+    // }
   }
 
   function resetForm() {
@@ -146,15 +154,7 @@ export default function ProductForm({ onSubmitForm }) {
         />
       </Support>
 
-      <Tags>
-        <label htmlFor="tags">Product Tags</label>
-        <input
-          type="text"
-          name="tags"
-          value={product.tags}
-          onChange={handleChange}
-        />
-      </Tags>
+      <Tags tags={product.tags} onUpdateTags={updateTags} />
       <label>
         <input
           type="checkbox"
@@ -173,6 +173,7 @@ export default function ProductForm({ onSubmitForm }) {
 }
 
 const Form = styled.form`
+  background: #764248;
   display: grid;
   gap: 1rem;
   max-width: 500px;
@@ -225,13 +226,6 @@ const PackageSize = styled.section`
 const Support = styled.div`
   display: grid;
 
-  input {
-    margin-top: 1rem;
-  }
-`;
-
-const Tags = styled.div`
-  display: grid;
   input {
     margin-top: 1rem;
   }

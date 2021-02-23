@@ -8,6 +8,7 @@ import ProductCard from './ProductCard';
 
 function App() {
   const STORAGE_KEY = 'Products';
+
   const [products, setProducts] = useState(loadFromLocal(STORAGE_KEY) ?? []);
 
   useEffect(() => {
