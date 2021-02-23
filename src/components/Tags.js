@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
   const [tagInput, setTagInput] = useState('');
+  const [selectedTagIndex, setSelectedTagIndex] = useState(-1);
+
   const handleChange = (event) => {
     setTagInput(event.target.value);
   };
@@ -15,7 +17,20 @@ export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
     }
 
     if (event.key === 'Backspace') {
-      onDeleteTag(tags[tags.length - 1]);
+      selectedTagIndex >= 0
+        ? onDeleteTag(tags[selectedTagIndex])
+        : onDeleteTag(tags[tags.length - 1]);
+    }
+
+    if (event.key === 'ArrowLeft') {
+      selectedTagIndex <= 0
+        ? setSelectedTagIndex(tags.length - 1)
+        : setSelectedTagIndex(selectedTagIndex - 1);
+    }
+    if (event.key === 'ArrowRight') {
+      selectedTagIndex === tags.length - 1
+        ? setSelectedTagIndex(0)
+        : setSelectedTagIndex(selectedTagIndex + 1);
     }
   };
 
@@ -24,7 +39,7 @@ export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
       <label htmlFor="tags">{headline}</label>
       <TagsContainer>
         {tags?.map((tag, index) => (
-          <Tag key={index + tag}>
+          <Tag key={index + tag} selected={selectedTagIndex === index}>
             {tag}
             <span onClick={() => onDeleteTag(tag)}>&times;</span>
           </Tag>
@@ -59,7 +74,7 @@ const TagsContainer = styled.div`
 `;
 
 const Tag = styled.span`
-  background: #aeffd8;
+  background: ${(prop) => (prop.selected ? '#FFADC6' : '#aeffd8')};
   color: #183642;
   margin: 0.2rem;
   padding: 0.4rem 0.2rem 0.2rem;
