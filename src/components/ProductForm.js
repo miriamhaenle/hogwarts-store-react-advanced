@@ -36,23 +36,30 @@ export default function ProductForm({ onSubmitForm }) {
     setProduct({ ...product, tags: updatedTags });
   };
 
-  // const isValidProductName = (name) => name.length >= 3;
-  // const isValidPrice = (price) => price > 0;
-  // const isValidEmail = (email) => email.includes('@');
-  // const isValidProductEntry = (product) =>
-  //   isValidProductName(product.name) && isValidPrice(product.price);
+  const isValidProductName = (name) => name.length >= 3;
+  const isValidPrice = (price) => price > 0;
+  const hasValidEmailDomain = (email) => {
+    const parts = email.spli('.');
+    return parts[parts.lengt - 1].length >= 2;
+  };
+  const isValidEmail = (email) =>
+    email.includes('@') && hasValidEmailDomain(email);
+  const isValidProductEntry = (product) =>
+    isValidProductName(product.name) &&
+    isValidPrice(product.price) &&
+    isValidEmail(product.supportContact);
 
   function submitForm(event) {
     event.preventDefault();
     onSubmitForm(product);
     setProduct(initialProduct);
 
-    // if (isValidProductEntry(product)) {
-    //   onSubmitForm(product);
-    //   setProduct(initialProduct);
-    // } else {
-    //   console.error('Not a valid product entry' + product);
-    // }
+    if (isValidProductEntry(product)) {
+      onSubmitForm(product);
+      setProduct(initialProduct);
+    } else {
+      alert('Not a valid product entry');
+    }
   }
 
   function resetForm() {
