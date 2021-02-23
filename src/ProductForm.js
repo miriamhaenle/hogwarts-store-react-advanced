@@ -70,12 +70,16 @@ export default function ProductForm({ onSubmitForm }) {
         </label>
         <label>
           Currency
-          <input
-            type="text"
+          <select
             name="currency"
             value={product.currency}
             onChange={handleChange}
-          />
+          >
+            <option value="">Select currency</option>
+            <option value="Galleon">Galleon</option>
+            <option value="Sickle">Sickle</option>
+            <option value="Knut">Knut</option>
+          </select>
         </label>
       </Pricing>
 
@@ -86,12 +90,13 @@ export default function ProductForm({ onSubmitForm }) {
           value={product.category}
           onChange={handleChange}
         >
-          <option value="">--Please select a category--</option>
-          <option value="sports">Sports</option>
-          <option value="home">Home</option>
-          <option value="school">School supplies</option>
-          <option value="wear">Wear</option>
-          <option value="sweets">Sweets</option>
+          <option value="">Select a category</option>
+          <option value="Magical artifacts">Magical artifacts</option>
+          <option value="Sports equipment">Sports equipment</option>
+          <option value="Home">Home</option>
+          <option value="School supplies">School supplies</option>
+          <option value="Pets">Pets</option>
+          <option value="Snacks">Snacks</option>
         </select>
       </Category>
 
@@ -177,6 +182,10 @@ const Form = styled.form`
     transform: scale(1.4);
     margin-right: 0.5rem;
   }
+  input[type='radio'] {
+    transform: scale(1.4);
+    margin-right: 0.5rem;
+  }
 `;
 
 const Pricing = styled.div`
@@ -188,7 +197,8 @@ const Pricing = styled.div`
     flex-direction: column;
     width: 95%;
   }
-  input {
+  input,
+  select {
     margin-top: 1rem;
   }
 `;

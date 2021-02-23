@@ -18,5 +18,5 @@ const ButtonStyled = styled.button`
   border: none;
   font-size: 1.25rem;
   font-weight: bold;
-  padding: 0.5rem;
+  padding: 0.7rem;
 `;

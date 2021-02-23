@@ -16,8 +16,9 @@ body {
 
 select,
   input {
-    padding: 0.3rem;
-    border-radius: 2px;
+    padding: 0.4rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
   }
 
   h1, h2, h3, h4 {

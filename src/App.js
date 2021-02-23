@@ -19,8 +19,8 @@ function App() {
   };
 
   const deleteCard = (id) => {
-    const listSansDeletedCard = products.filter((product) => product.id !== id);
-    setProducts(listSansDeletedCard);
+    const updatedList = products.filter((product) => product.id !== id);
+    setProducts(updatedList);
   };
 
   return (
