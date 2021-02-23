@@ -1,13 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-export default function Tags({
-  headline,
-  tags,
-  onUpdateTags,
-  onDeleteTag,
-  onDeleteLastTag,
-}) {
+export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
   const [tagInput, setTagInput] = useState('');
   const handleChange = (event) => {
     setTagInput(event.target.value);
@@ -21,8 +15,7 @@ export default function Tags({
     }
 
     if (event.key === 'Backspace') {
-      event.preventDefault();
-      onDeleteLastTag();
+      onDeleteTag(tags[tags.length - 1]);
     }
   };
 
