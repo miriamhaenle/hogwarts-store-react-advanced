@@ -30,12 +30,11 @@ export default function ProductForm({ onSubmitForm }) {
   const updateTags = (tag) =>
     setProduct({ ...product, tags: [...product.tags, tag] });
 
-  const isValidProductName = (name) => name.length >= 3;
-  const isValidPrice = (price) => price > 0;
-  const isValidEmail = (email) => email.includes('@');
-
-  const isValidProductEntry = (product) =>
-    isValidProductName(product.name) && isValidPrice(product.price);
+  // const isValidProductName = (name) => name.length >= 3;
+  // const isValidPrice = (price) => price > 0;
+  // const isValidEmail = (email) => email.includes('@');
+  // const isValidProductEntry = (product) =>
+  //   isValidProductName(product.name) && isValidPrice(product.price);
 
   function submitForm(event) {
     event.preventDefault();
