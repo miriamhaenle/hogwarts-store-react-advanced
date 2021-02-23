@@ -39,8 +39,8 @@ export default function ProductForm({ onSubmitForm }) {
   const isValidProductName = (name) => name.length >= 3;
   const isValidPrice = (price) => price > 0;
   const hasValidEmailDomain = (email) => {
-    const parts = email.spli('.');
-    return parts[parts.lengt - 1].length >= 2;
+    const parts = email.split('.');
+    return parts[parts.length - 1].length >= 2;
   };
   const isValidEmail = (email) =>
     email.includes('@') && hasValidEmailDomain(email);
