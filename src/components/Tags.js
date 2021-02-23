@@ -15,6 +15,7 @@ export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
       event.preventDefault();
       onUpdateTags(tagInput.toUpperCase());
       setTagInput('');
+      setSelectedTagIndex(-1);
     }
 
     if (event.key === 'Backspace') {
