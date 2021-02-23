@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
+import PropTypes from 'prop-types';
 
 export default function Button({ text, color, type, handlerFn = () => {} }) {
   return (
@@ -11,6 +12,13 @@ export default function Button({ text, color, type, handlerFn = () => {} }) {
     </ButtonStyled>
   );
 }
+
+Button.propTypes = {
+  text: PropTypes.string,
+  color: PropTypes.string,
+  type: PropTypes.string,
+  handlerFn: PropTypes.func,
+};
 
 const ButtonStyled = styled.button`
   background: ${(props) => props.background ?? 'E3C5BB'};

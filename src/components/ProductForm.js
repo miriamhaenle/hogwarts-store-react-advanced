@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components/macro';
+import PropTypes from 'prop-types';
 import Button from './Button';
-import Tags from './components/Tags';
+import Tags from './Tags';
 
 export default function ProductForm({ onSubmitForm }) {
   const initialProduct = {
@@ -180,6 +181,10 @@ export default function ProductForm({ onSubmitForm }) {
     </Form>
   );
 }
+
+ProductForm.propTypes = {
+  onSubmitForm: PropTypes.func,
+};
 
 const Form = styled.form`
   background: #764248;

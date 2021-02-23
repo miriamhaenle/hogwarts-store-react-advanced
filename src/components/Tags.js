@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
+import PropTypes from 'prop-types';
 
 export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
   const [tagInput, setTagInput] = useState('');
@@ -56,6 +57,13 @@ export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
     </>
   );
 }
+
+Tags.propTypes = {
+  headline: PropTypes.string,
+  tags: PropTypes.array,
+  onUpdateTags: PropTypes.func,
+  onDeleteTag: PropTypes.func,
+};
 
 const Input = styled.input`
   border: none;

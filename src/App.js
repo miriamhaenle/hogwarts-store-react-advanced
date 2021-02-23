@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 import saveToLocal from './lib/saveToLocal';
 import loadFromLocal from './lib/loadFromLocal';
-import ProductForm from './ProductForm';
-import ProductCard from './ProductCard';
+import ProductForm from './components/ProductForm';
+import ProductCard from './components/ProductCard';
 
 function App() {
   const STORAGE_KEY = 'Products';
@@ -25,7 +25,7 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <ProductForm onSubmitForm={addProduct} />
       {products.map((product) => (
         <ProductCard
@@ -34,7 +34,7 @@ function App() {
           onDeleteCard={() => deleteCard(product.id)}
         />
       ))}
-    </div>
+    </>
   );
 }
 

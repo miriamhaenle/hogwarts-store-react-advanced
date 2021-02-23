@@ -1,4 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
+import PropTypes from 'prop-types';
+import ProductForm from './ProductForm';
 
 export default function ProductCard({ product, onDeleteCard }) {
   return (
@@ -21,6 +23,11 @@ export default function ProductCard({ product, onDeleteCard }) {
     </Card>
   );
 }
+
+ProductForm.propTypes = {
+  product: PropTypes.object,
+  onDeleteCard: PropTypes.fun,
+};
 
 const Card = styled.div`
   background: #e3c5bb;
