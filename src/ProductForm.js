@@ -162,6 +162,7 @@ export default function ProductForm({ onSubmitForm }) {
         tags={product.tags}
         onUpdateTags={updateTags}
         onDeleteTag={deleteTag}
+        headline="Product tags"
       />
       <label>
         <input

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-export default function Tags({ tags, onUpdateTags, onDeleteTag }) {
+export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
   const [tagInput, setTagInput] = useState('');
 
   console.log(tagInput, 'Tag input');
@@ -19,17 +19,8 @@ export default function Tags({ tags, onUpdateTags, onDeleteTag }) {
   };
 
   return (
-    <div>
-      <Input>
-        <label htmlFor="tags">Product Tags</label>
-        <input
-          type="text"
-          name="tags"
-          value={tagInput}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-        />
-      </Input>
+    <>
+      <label htmlFor="tags">{headline}</label>
       <TagsContainer>
         {tags?.map((tag, index) => (
           <Tag key={index + tag}>
@@ -37,20 +28,33 @@ export default function Tags({ tags, onUpdateTags, onDeleteTag }) {
             <span onClick={() => onDeleteTag(tag)}>&times;</span>
           </Tag>
         ))}
+        <Input
+          type="text"
+          name="tags"
+          value={tagInput}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          placeholder="Write here"
+        />
       </TagsContainer>
-    </div>
+    </>
   );
 }
 
-const Input = styled.div`
-  display: grid;
-  input {
-    margin-top: 1rem;
-  }
+const Input = styled.input`
+  border: none;
+  display: inline;
+  width: 30%;
 `;
+
 const TagsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+
+  background: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.4rem;
 `;
 
 const Tag = styled.span`
