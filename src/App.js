@@ -1,19 +1,14 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import saveToLocal from './lib/saveToLocal';
-import loadFromLocal from './lib/loadFromLocal';
+import { useLocalStorage } from './hooks/useLocalStorage';
 import ProductForm from './components/ProductForm';
 import ProductCard from './components/ProductCard';
 
 function App() {
   const STORAGE_KEY = 'Products';
 
-  const [products, setProducts] = useState(loadFromLocal(STORAGE_KEY) ?? []);
-
-  useEffect(() => {
-    saveToLocal(STORAGE_KEY, products);
-  }, [products]);
+  const [products, setProducts] = useLocalStorage(STORAGE_KEY, []);
 
   const addProduct = (product) => {
     setProducts([...products, { ...product, id: uuidv4() }]);
