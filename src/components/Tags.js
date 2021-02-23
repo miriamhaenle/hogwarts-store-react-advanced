@@ -9,9 +9,6 @@ export default function Tags({
   onDeleteLastTag,
 }) {
   const [tagInput, setTagInput] = useState('');
-
-  console.log(tagInput, 'Tag input');
-
   const handleChange = (event) => {
     setTagInput(event.target.value);
   };
@@ -25,7 +22,6 @@ export default function Tags({
 
     if (event.key === 'Backspace') {
       event.preventDefault();
-      console.log('delete');
       onDeleteLastTag();
     }
   };
