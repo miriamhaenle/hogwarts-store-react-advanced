@@ -94,6 +94,7 @@ export default function ProductForm({ onSubmitForm }) {
             name="currency"
             value={product.currency}
             onChange={handleChange}
+            required
           >
             <option value="">Select currency</option>
             <option value="Galleon">Galleon</option>
@@ -109,6 +110,7 @@ export default function ProductForm({ onSubmitForm }) {
           name="category"
           value={product.category}
           onChange={handleChange}
+          required
         >
           <option value="">Select a category</option>
           <option value="Magical artifacts">Magical artifacts</option>
