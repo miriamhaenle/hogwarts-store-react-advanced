@@ -50,11 +50,8 @@ export default function ProductForm({ onSubmitForm }) {
     isValidEmail(product.supportContact);
 
   function submitForm(event) {
-    event.preventDefault();
-    onSubmitForm(product);
-    setProduct(initialProduct);
-
     if (isValidProductEntry(product)) {
+      event.preventDefault();
       onSubmitForm(product);
       setProduct(initialProduct);
     } else {

@@ -6,7 +6,7 @@ export const useLocalStorage = (key, defaultValue) => {
 
   const [value, setValue] = useState(initialValue);
   useEffect(() => {
-    saveToLocal(key, JSON.stringify(value));
+    saveToLocal(key, value);
   }, [key, value]);
 
   return [value, setValue];
