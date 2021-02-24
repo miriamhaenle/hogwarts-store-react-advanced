@@ -9,6 +9,7 @@ function App() {
   const STORAGE_KEY = 'Products';
 
   const [products, setProducts] = useLocalStorage(STORAGE_KEY, []);
+  console.log(products);
 
   const addProduct = (product) => {
     setProducts([...products, { ...product, id: uuidv4() }]);
@@ -22,14 +23,13 @@ function App() {
   return (
     <>
       <ProductForm onSubmitForm={addProduct} />
-      {products ??
-        products.map((product) => (
-          <ProductCard
-            product={product}
-            key={product.id}
-            onDeleteCard={() => deleteCard(product.id)}
-          />
-        ))}
+      {products?.map((product) => (
+        <ProductCard
+          product={product}
+          key={product.id}
+          onDeleteCard={() => deleteCard(product.id)}
+        />
+      ))}
     </>
   );
 }

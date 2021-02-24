@@ -26,7 +26,7 @@ export default function ProductCard({ product, onDeleteCard }) {
 
 ProductForm.propTypes = {
   product: PropTypes.object,
-  onDeleteCard: PropTypes.fun,
+  onDeleteCard: PropTypes.func,
 };
 
 const Card = styled.div`

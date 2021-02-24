@@ -1,6 +1,8 @@
 export const loadFromLocal = (key) => {
   try {
-    return JSON.parse(localStorage.getItem(key));
+    const local = JSON.parse(localStorage.getItem(key));
+    console.log(local);
+    return local;
   } catch (error) {
     console.error(error.message);
   }
