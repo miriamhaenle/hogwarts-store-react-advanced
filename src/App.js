@@ -27,13 +27,14 @@ function App() {
   return (
     <div>
       <ProductForm onSubmitForm={addProduct} />
-      {products.map((product) => (
-        <ProductCard
-          product={product}
-          key={product.id}
-          onDeleteCard={() => deleteCard(product.id)}
-        />
-      ))}
+      {products ??
+        products.map((product) => (
+          <ProductCard
+            product={product}
+            key={product.id}
+            onDeleteCard={() => deleteCard(product.id)}
+          />
+        ))}
     </div>
   );
 }
