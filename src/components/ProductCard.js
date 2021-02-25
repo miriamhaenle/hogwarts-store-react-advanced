@@ -2,7 +2,12 @@ import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import ProductForm from './ProductForm';
 
-export default function ProductCard({ product, onDeleteCard }) {
+export default function ProductCard({
+  product,
+  onDeleteCard,
+  onAddToFavorites,
+  isFavorite,
+}) {
   return (
     <Card>
       <h4>{product.name}</h4>
@@ -20,6 +25,7 @@ export default function ProductCard({ product, onDeleteCard }) {
         ))}
       </Tags>
       {product.onSale && <Sale>ON SALE</Sale>}
+      <FavoriteButton isFavorite={isFavorite} onClick={onAddToFavorites} />
     </Card>
   );
 }
@@ -85,4 +91,15 @@ const Tags = styled.ul`
     padding: 0.4rem 0.2rem 0.2rem;
     display: inline;
   }
+`;
+
+const FavoriteButton = styled.div`
+  height: 1.5rem;
+  width: 1.5rem;
+  background: ${(props) => (props.isFavorite ? 'hotpink' : 'transparent')};
+  border: 2px solid grey;
+  border-radius: 50%;
+  position: absolute;
+  right: 30px;
+  bottom: 10px;
 `;

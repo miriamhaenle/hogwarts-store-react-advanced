@@ -7,6 +7,10 @@ function App() {
   const STORAGE_KEY = 'Products';
 
   const [products, setProducts] = useLocalStorage(STORAGE_KEY, []);
+  const [favoriteProducts, setFavoriteProducts] = useLocalStorage(
+    'FavoriteProducts',
+    []
+  );
 
   const addProduct = (product) => {
     setProducts([...products, { ...product, id: uuidv4() }]);
@@ -17,6 +21,22 @@ function App() {
     setProducts(updatedList);
   };
 
+  const addFavoriteProduct = (product) => {
+    if (
+      favoriteProducts.some(
+        (favoriteProduct) => product.id === favoriteProduct.id
+      )
+    ) {
+      setFavoriteProducts(
+        favoriteProducts.filter(
+          (favoriteProduct) => favoriteProduct.id !== product.id
+        )
+      );
+    } else {
+      setFavoriteProducts([...favoriteProducts, product]);
+    }
+  };
+
   return (
     <>
       <ProductForm onSubmitForm={addProduct} />
@@ -25,6 +45,10 @@ function App() {
           product={product}
           key={product.id}
           onDeleteCard={() => deleteCard(product.id)}
+          onAddToFavorites={() => addFavoriteProduct(product)}
+          isFavorite={favoriteProducts.some(
+            (favoriteProduct) => product.id === favoriteProduct.id
+          )}
         />
       ))}
     </>
