@@ -60,8 +60,9 @@ export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
 }
 
 Tags.propTypes = {
-  headline: PropTypes.string,
-  tags: PropTypes.array,
+  /** Max 20 characters */
+  headline: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string),
   onUpdateTags: PropTypes.func,
   onDeleteTag: PropTypes.func,
 };
