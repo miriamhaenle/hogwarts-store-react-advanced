@@ -11,7 +11,7 @@ export default function ProductCard({
   return (
     <Card>
       <h4>{product.name}</h4>
-      <XButton onClick={onDeleteCard}>x</XButton>
+      <DeleteButton onClick={onDeleteCard}>x</DeleteButton>
       <div>
         <span>{product.price} </span>
         <span>{product.currency}</span>
@@ -25,7 +25,9 @@ export default function ProductCard({
         ))}
       </Tags>
       {product.onSale && <Sale>ON SALE</Sale>}
-      <FavoriteButton isFavorite={isFavorite} onClick={onAddToFavorites} />
+      <FavoriteButton isFavorite={isFavorite} onClick={onAddToFavorites}>
+        <div></div>
+      </FavoriteButton>
     </Card>
   );
 }
@@ -41,8 +43,9 @@ const Card = styled.div`
   color: #183642;
   max-width: 500px;
   margin: 1rem auto;
-  padding: 1.5rem;
+  padding: 1.5rem 0 1.5rem 6.4rem;
   position: relative;
+  text-align: initial;
 
   h4 {
     margin-bottom: 0.4rem;
@@ -51,13 +54,13 @@ const Card = styled.div`
   }
 `;
 
-const XButton = styled.span`
+const DeleteButton = styled.span`
   color: #db7c26;
   cursor: pointer;
   font-size: 2rem;
   position: absolute;
-  top: 0;
-  right: 0.6rem;
+  top: 0.7rem;
+  right: 1.5rem;
 `;
 
 const Sale = styled.span`
@@ -94,12 +97,35 @@ const Tags = styled.ul`
 `;
 
 const FavoriteButton = styled.div`
-  height: 1.5rem;
-  width: 1.5rem;
-  background: ${(props) => (props.isFavorite ? 'hotpink' : 'transparent')};
-  border: 2px solid grey;
-  border-radius: 50%;
   position: absolute;
-  right: 30px;
-  bottom: 10px;
+  top: 2rem;
+  left: 3rem;
+
+  div {
+    height: 1.5rem;
+    width: 1.5rem;
+    background: ${(props) => (props.isFavorite ? '#FFADC6' : '#DFE2CF')};
+    transform: rotate(45deg);
+
+    &::before {
+      content: '';
+      height: 1.5rem;
+      width: 1.5rem;
+      background: ${(props) => (props.isFavorite ? '#FFADC6' : '#DFE2CF')};
+      position: absolute;
+      border-radius: 50%;
+      right: 10px;
+      bottom: 0px;
+    }
+    &::after {
+      content: '';
+      height: 1.5rem;
+      width: 1.5rem;
+      background: ${(props) => (props.isFavorite ? '#FFADC6' : '#DFE2CF')};
+      border-radius: 50%;
+      position: absolute;
+      right: 0px;
+      bottom: 11px;
+    }
+  }
 `;

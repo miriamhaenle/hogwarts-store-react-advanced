@@ -1,7 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
-import ProductCard from './components/ProductCard';
-import ProductForm from './components/ProductForm';
+import { Switch, Route } from 'react-router-dom';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import Products from './pages/Products';
+import Home from './pages/Home';
+import Wishlist from './pages/Wishlist';
+import Navigation from './components/Navigation';
 
 function App() {
   const [products, setProducts] = useLocalStorage('Products', []);
@@ -10,6 +13,8 @@ function App() {
     'FavoriteProducts',
     []
   );
+
+  const updateFavorites = (products) => setFavoriteProducts([...products]);
 
   const addProduct = (product) => {
     setProducts([...products, { ...product, id: uuidv4() }]);
@@ -36,7 +41,31 @@ function App() {
     }
   };
 
-  return <></>;
+  return (
+    <>
+      <Navigation />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/products">
+          <Products
+            products={products}
+            favoriteProducts={favoriteProducts}
+            addProduct={addProduct}
+            deleteCard={deleteCard}
+            addFavoriteProduct={addFavoriteProduct}
+          />
+        </Route>
+        <Route path="/wishlist">
+          <Wishlist
+            favoriteProducts={favoriteProducts}
+            updateFavorites={updateFavorites}
+          />
+        </Route>
+      </Switch>
+    </>
+  );
 }
 
 export default App;
