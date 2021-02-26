@@ -4,9 +4,8 @@ import ProductForm from './components/ProductForm';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
-  const STORAGE_KEY = 'Products';
+  const [products, setProducts] = useLocalStorage('Products', []);
 
-  const [products, setProducts] = useLocalStorage(STORAGE_KEY, []);
   const [favoriteProducts, setFavoriteProducts] = useLocalStorage(
     'FavoriteProducts',
     []
