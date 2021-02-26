@@ -36,22 +36,7 @@ function App() {
     }
   };
 
-  return (
-    <>
-      <ProductForm onSubmitForm={addProduct} />
-      {products?.map((product) => (
-        <ProductCard
-          product={product}
-          key={product.id}
-          onDeleteCard={() => deleteCard(product.id)}
-          onAddToFavorites={() => addFavoriteProduct(product)}
-          isFavorite={favoriteProducts.some(
-            (favoriteProduct) => product.id === favoriteProduct.id
-          )}
-        />
-      ))}
-    </>
-  );
+  return <></>;
 }
 
 export default App;
