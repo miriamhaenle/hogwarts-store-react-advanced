@@ -232,6 +232,7 @@ const Category = styled.div`
 const PackageSize = styled.section`
   div {
     display: flex;
+    justify-content: center;
   }
 
   label {

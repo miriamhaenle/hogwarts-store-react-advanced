@@ -35,4 +35,7 @@ export default function Wishlist({ favoriteProducts, updateFavorites }) {
 const Main = styled.main`
   margin: 0 auto;
   text-align: center;
+  h1 {
+    padding: 2rem;
+  }
 `;

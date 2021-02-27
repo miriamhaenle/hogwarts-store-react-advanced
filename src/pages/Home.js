@@ -1,14 +1,48 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { ReactComponent as MagicWand } from '../assets/magicWand.svg';
 
 export default function Home() {
   return (
     <Main>
-      <h1>This is home</h1>
+      <h1>Welcome to the Wizard Shop</h1>
+      <Wand />
+      <p>You can add items to our shop.</p>
+      <p>But also add items to your wishlist.</p>
+      <JumpMark to="/products">Check out our product portfolio </JumpMark>
     </Main>
   );
 }
 
 const Main = styled.main`
   display: grid;
-  justify-content: center;
+  justify-items: center;
+
+  h1 {
+    padding: 2rem;
+  }
+`;
+
+const Wand = styled(MagicWand)`
+  fill: white;
+  width: 40px;
+
+  &:hover {
+    fill: #aeffd8;
+    transform: rotate(15deg);
+  }
+`;
+
+const JumpMark = styled(Link)`
+  background: #183642;
+  color: white;
+  padding: 0.2rem;
+  text-decoration: none;
+
+  &:active,
+  &:hover {
+    background: white;
+    color: #183642;
+  }
 `;

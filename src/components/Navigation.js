@@ -28,6 +28,12 @@ const Nav = styled.nav`
     background: #dfe2cf;
     padding: 0 0.25rem;
     text-decoration: none;
+
+    &:active {
+      background: #aeffd8;
+      color: #764248;
+      transform: scale(1.1);
+    }
   }
 
   .active {
