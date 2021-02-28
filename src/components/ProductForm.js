@@ -181,8 +181,8 @@ export default function ProductForm({ onSubmitForm }) {
         On sale
       </label>
       <Buttons>
-        <Button text="Add" color="#DDA3B2" />
-        <Button type="reset" text="Cancel" handlerFn={resetForm} />
+        <Button text="Add" color="var(--primary-200)" />
+        <Button type="reset" text="Reset" handlerFn={resetForm} />
       </Buttons>
     </Form>
   );
@@ -193,7 +193,7 @@ ProductForm.propTypes = {
 };
 
 const Form = styled.form`
-  background: #764248;
+  background: var(--primary-300);
   display: grid;
   gap: 0.5rem;
   max-width: 500px;

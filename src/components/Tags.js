@@ -76,14 +76,15 @@ const TagsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 
-  background: white;
-  border: 1px solid black;
+  background: var(--grey-100);
+  border: 1px solid var(--grey-500);
   border-radius: 5px;
   padding: 0.4rem;
 `;
 
 const Tag = styled.span`
-  background: ${(prop) => (prop.selected ? '#FFADC6' : '#aeffd8')};
+  background: ${(prop) =>
+    prop.selected ? 'var(--primary-200)' : 'var(--secondary-300)'};
   color: #183642;
   margin: 0.2rem;
   padding: 0.4rem 0.2rem 0.2rem;

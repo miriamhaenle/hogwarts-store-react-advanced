@@ -38,9 +38,9 @@ ProductForm.propTypes = {
 };
 
 const Card = styled.div`
-  background: #e3c5bb;
+  background: var(--primary-100);
   border-radius: 5px;
-  color: #183642;
+  color: var(--secondary-500);
   max-width: 500px;
   margin: 1rem auto;
   padding: 1.5rem 0 1.5rem 6.4rem;
@@ -49,13 +49,13 @@ const Card = styled.div`
 
   h4 {
     margin-bottom: 0.4rem;
-    background: #ffadc6;
+    background: var(--primary-200);
     display: inline;
   }
 `;
 
 const DeleteButton = styled.span`
-  color: #db7c26;
+  color: var(--grey-400);
   cursor: pointer;
   font-size: 2rem;
   position: absolute;
@@ -64,8 +64,8 @@ const DeleteButton = styled.span`
 `;
 
 const Sale = styled.span`
-  background: #aeffd8;
-  color: #183642;
+  background: var(--secondary-300);
+  color: var(--secondary-500);
   font-weight: bold;
   position: absolute;
   transform: rotate(-23deg);
@@ -75,8 +75,8 @@ const Sale = styled.span`
 
   &:hover {
     transform: rotate(23deg);
-    color: #aeffd8;
-    background: #183642;
+    color: var(--secondary-300);
+    background: var(--secondary-500);
   }
 `;
 
@@ -88,8 +88,8 @@ const Tags = styled.ul`
   visibility: none;
   li {
     list-style: none;
-    background: #183642;
-    color: #aeffd8;
+    background: var(--secondary-500);
+    color: var(--secondary-300);
     margin: 0.2rem;
     padding: 0.4rem 0.2rem 0.2rem;
     display: inline;
@@ -104,14 +104,16 @@ const FavoriteButton = styled.div`
   div {
     height: 1.5rem;
     width: 1.5rem;
-    background: ${(props) => (props.isFavorite ? '#FFADC6' : '#DFE2CF')};
+    background: ${(props) =>
+      props.isFavorite ? 'var(--primary-200)' : 'var(--grey-200)'};
     transform: rotate(45deg);
 
     &::before {
       content: '';
       height: 1.5rem;
       width: 1.5rem;
-      background: ${(props) => (props.isFavorite ? '#FFADC6' : '#DFE2CF')};
+      background: ${(props) =>
+        props.isFavorite ? 'var(--primary-200)' : 'var(--grey-200)'};
       position: absolute;
       border-radius: 50%;
       right: 10px;
@@ -121,7 +123,8 @@ const FavoriteButton = styled.div`
       content: '';
       height: 1.5rem;
       width: 1.5rem;
-      background: ${(props) => (props.isFavorite ? '#FFADC6' : '#DFE2CF')};
+      background: ${(props) =>
+        props.isFavorite ? 'var(--primary-200)' : 'var(--grey-200)'};
       border-radius: 50%;
       position: absolute;
       right: 0px;

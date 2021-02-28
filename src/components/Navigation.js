@@ -17,7 +17,7 @@ export default function Navigation() {
 
 const Nav = styled.nav`
   display: flex;
-  color: #764248;
+  color: var(--primary-300);
   justify-content: space-around;
   list-style: none;
   max-width: 500px;
@@ -25,18 +25,20 @@ const Nav = styled.nav`
   padding: 2rem;
 
   a {
-    background: #dfe2cf;
+    background: var(--grey-200);
+    color: var(--grey-400);
     padding: 0 0.25rem;
     text-decoration: none;
 
     &:active {
-      background: #aeffd8;
-      color: #764248;
+      background: var(--secondary-300);
+      color: var(--secondary-500);
       transform: scale(1.1);
     }
   }
 
   .active {
-    background: #aeffd8;
+    background: var(--secondary-300);
+    color: var(--secondary-500);
   }
 `;
