@@ -16,15 +16,15 @@ export default function Products({
   const [displayedProducts, setDisplayedProducts] = useState(products);
   const [categories, setCategories] = useState([]);
 
+  const uniqueCategories = (products) => {
+    const set = new Set(products.map((product) => product.category));
+    const categories = Array.from(set);
+    return categories.map((category) => ({
+      name: category,
+      isActive: false,
+    }));
+  };
   useEffect(() => {
-    const uniqueCategories = (products) => {
-      const set = new Set(products.map((product) => product.category));
-      const categories = Array.from(set);
-      return categories.map((category) => ({
-        name: category,
-        isActive: false,
-      }));
-    };
     setCategories(uniqueCategories(products));
   }, [products]);
 
@@ -42,6 +42,11 @@ export default function Products({
         return category;
       })
     );
+  };
+
+  const reset = (products) => {
+    setDisplayedProducts(products);
+    setCategories(uniqueCategories(products));
   };
   return (
     <Main>
@@ -68,9 +73,7 @@ export default function Products({
                 {categoryPlaceholders[category.name]}
               </Category>
             ))}
-            <Category onClick={() => setDisplayedProducts(products)}>
-              Reset
-            </Category>
+            <Category onClick={() => reset(products)}>Reset</Category>
           </Categories>
           <Wrapper>
             {displayedProducts?.map((product) => (
@@ -150,6 +153,6 @@ const Category = styled.div`
   svg {
     width: 80%;
     height: 80%;
-    fill: ${(props) => props.active && 'var(--primary-400)'};
+    fill: ${(props) => props.active && 'var(--secondary-500)'};
   }
 `;
