@@ -60,12 +60,13 @@ const Nav = styled.div`
   width: 400px;
 
   a {
-    color: #e3c5bb;
+    color: var(--primary-200);
     text-decoration: none;
   }
   a:hover,
   a.active {
-    background: #db7c26;
+    background: var(--secondary-200);
+    color: var(--secondary-500);
     text-decoration: underline;
   }
 `;
