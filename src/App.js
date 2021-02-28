@@ -1,8 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Switch, Route } from 'react-router-dom';
 import { useLocalStorage } from './hooks/useLocalStorage';
-import Products from './pages/Products';
+import Cart from './pages/Cart';
 import Home from './pages/Home';
+import Products from './pages/Products';
 import Wishlist from './pages/Wishlist';
 import Navigation from './components/Navigation';
 import { ReactComponent as Wand } from './assets/magicWand.svg';
@@ -19,6 +20,7 @@ function App() {
     'FavoriteProducts',
     []
   );
+  const [cartItems, setCartItems] = useLocalStorage('Cart', []);
 
   const categoryPlaceholders = {
     'Magical artifacts': <Wand />,
@@ -56,6 +58,11 @@ function App() {
     }
   };
 
+  const addToCart = (product) => {
+    console.log('click');
+    console.log(product);
+    setCartItems([...cartItems, product]);
+  };
   return (
     <>
       <Navigation />
@@ -72,6 +79,7 @@ function App() {
             addFavoriteProduct={addFavoriteProduct}
             categoryPlaceholders={categoryPlaceholders}
             setProducts={setProducts}
+            addToCart={addToCart}
           />
         </Route>
         <Route path="/wishlist">
@@ -80,6 +88,9 @@ function App() {
             updateFavorites={updateFavorites}
             categoryPlaceholders={categoryPlaceholders}
           />
+        </Route>
+        <Route path="/cart">
+          <Cart cartItems={cartItems} />
         </Route>
       </Switch>
     </>

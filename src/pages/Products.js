@@ -11,6 +11,7 @@ export default function Products({
   addFavoriteProduct,
   favoriteProducts,
   categoryPlaceholders,
+  addToCart,
 }) {
   let { path, url } = useRouteMatch();
   const [displayedProducts, setDisplayedProducts] = useState(products);
@@ -24,6 +25,7 @@ export default function Products({
       isActive: false,
     }));
   };
+
   useEffect(() => {
     setCategories(uniqueCategories(products));
   }, [products]);
@@ -44,10 +46,11 @@ export default function Products({
     );
   };
 
-  const reset = (products) => {
+  const resetCategories = (products) => {
     setDisplayedProducts(products);
     setCategories(uniqueCategories(products));
   };
+
   return (
     <Main>
       <h1>Products</h1>
@@ -73,7 +76,7 @@ export default function Products({
                 {categoryPlaceholders[category.name]}
               </Category>
             ))}
-            <Category onClick={() => reset(products)}>Reset</Category>
+            <Category onClick={() => resetCategories(products)}>Reset</Category>
           </Categories>
           <Wrapper>
             {displayedProducts?.map((product) => (
@@ -86,6 +89,7 @@ export default function Products({
                   (favoriteProduct) => product.id === favoriteProduct.id
                 )}
                 placeholderImage={categoryPlaceholders}
+                addToCart={() => addToCart(product)}
               />
             ))}
           </Wrapper>
@@ -151,8 +155,8 @@ const Category = styled.div`
   width: 3rem;
   height: 3rem;
   svg {
-    width: 80%;
-    height: 80%;
+    width: 70%;
+    height: 70%;
     fill: ${(props) => props.active && 'var(--secondary-500)'};
   }
 `;

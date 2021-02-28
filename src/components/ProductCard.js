@@ -10,6 +10,7 @@ export default function ProductCard({
   onAddToFavorites,
   isFavorite,
   placeholderImage,
+  addToCart,
 }) {
   const [isAdminView, setIsAdminView] = useState(false);
 
@@ -32,8 +33,12 @@ export default function ProductCard({
           <div>Contact: {product.supportContact}</div>
         </Description>
         <Buttons>
-          <Button text="Add to cart" />
-          <Button text="Buy now" color="var(--secondary-200)" />
+          <Button text="Add to cart" handlerFn={addToCart} />
+          <Button
+            text="Buy now"
+            color="var(--secondary-200)"
+            onClick={() => alert('Money please!')}
+          />
         </Buttons>
 
         <Tags>
@@ -90,7 +95,7 @@ const CardContent = styled.div`
     position: relative;
 
     &:before {
-      background: var(--primary-200);
+      background: var(--primary-400);
       border-radius: 50%;
       content: '';
       height: 0.25rem;
@@ -166,10 +171,10 @@ const Tags = styled.ul`
 `;
 
 const FavoriteButton = styled.div`
-  right: 3rem;
+  right: 2.5rem;
   margin-top: 0.25rem;
   position: absolute;
-  top: 5rem;
+  top: 2.4rem;
 
   div {
     height: 1rem;
