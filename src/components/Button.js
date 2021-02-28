@@ -21,7 +21,7 @@ Button.propTypes = {
 };
 
 const ButtonStyled = styled.button`
-  background: ${(props) => props.background ?? 'E3C5BB'};
+  background: ${(props) => props.background ?? '#E3C5BB'};
   border-radius: 2px;
   border: none;
   font-size: 1.25rem;

@@ -25,24 +25,24 @@ const Main = styled.main`
 `;
 
 const Wand = styled(MagicWand)`
-  fill: white;
+  fill: var(--grey-100);
   width: 40px;
 
   &:hover {
-    fill: #aeffd8;
+    fill: var(--secondary-300);
     transform: rotate(15deg);
   }
 `;
 
 const JumpMark = styled(Link)`
-  background: #183642;
-  color: white;
+  background: var(--secondary-500);
+  color: var(--grey-100);
   padding: 0.2rem;
   text-decoration: none;
 
   &:active,
   &:hover {
-    background: white;
-    color: #183642;
+    background: var(--grey-100);
+    color: var(--secondary-500);
   }
 `;
