@@ -5,6 +5,12 @@ import Products from './pages/Products';
 import Home from './pages/Home';
 import Wishlist from './pages/Wishlist';
 import Navigation from './components/Navigation';
+import { ReactComponent as Wand } from './assets/magicWand.svg';
+import { ReactComponent as Broom } from './assets/broom.svg';
+import { ReactComponent as Book } from './assets/magic-book.svg';
+import { ReactComponent as Owl } from './assets/owl.svg';
+import { ReactComponent as HomeSupplies } from './assets/mortar.svg';
+import { ReactComponent as Snacks } from './assets/snack.svg';
 
 function App() {
   const [products, setProducts] = useLocalStorage('Products', []);
@@ -13,6 +19,15 @@ function App() {
     'FavoriteProducts',
     []
   );
+
+  const categoryPlaceholders = {
+    'Magical artifacts': <Wand />,
+    'Sports equipment': <Broom />,
+    Home: <HomeSupplies />,
+    'School supplies': <Book />,
+    Pets: <Owl />,
+    Snacks: <Snacks />,
+  };
 
   const updateFavorites = (products) => setFavoriteProducts([...products]);
 
@@ -55,12 +70,15 @@ function App() {
             addProduct={addProduct}
             deleteCard={deleteCard}
             addFavoriteProduct={addFavoriteProduct}
+            categoryPlaceholders={categoryPlaceholders}
+            setProducts={setProducts}
           />
         </Route>
         <Route path="/wishlist">
           <Wishlist
             favoriteProducts={favoriteProducts}
             updateFavorites={updateFavorites}
+            categoryPlaceholders={categoryPlaceholders}
           />
         </Route>
       </Switch>

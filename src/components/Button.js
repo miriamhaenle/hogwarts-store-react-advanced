@@ -21,10 +21,10 @@ Button.propTypes = {
 };
 
 const ButtonStyled = styled.button`
-  background: ${(props) => props.background ?? 'var(--grey-200)'};
-  border-radius: 2px;
-  border: none;
-  font-size: 1.25rem;
-  font-weight: bold;
+  background: ${(props) => props.background ?? 'var(--primary-100)'};
+  border-radius: 0.5rem;
+  border: ${(props) => props.background ?? '1px solid var(--grey-500)'};
+  font-size: 1.175rem;
   padding: 0.7rem;
+  min-width: 10rem;
 `;
