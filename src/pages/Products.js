@@ -82,11 +82,11 @@ export default function Products({
             {displayedProducts?.map((product) => (
               <ProductCard
                 product={product}
-                key={product.id}
+                key={product._id}
                 onDeleteCard={() => deleteCard(product.id)}
                 onAddToFavorites={() => addFavoriteProduct(product)}
                 isFavorite={favoriteProducts.some(
-                  (favoriteProduct) => product.id === favoriteProduct.id
+                  (favoriteProduct) => product._id === favoriteProduct.id
                 )}
                 placeholderImage={categoryPlaceholders}
                 addToCart={() => addToCart(product)}
@@ -101,9 +101,9 @@ export default function Products({
 
 const Main = styled.main`
   margin: 0 auto;
+  text-align: center;
   h1 {
     padding: 2rem;
-    text-align: center;
   }
 `;
 

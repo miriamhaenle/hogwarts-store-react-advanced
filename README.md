@@ -13,6 +13,11 @@ Overview branches
 - `favorite-products`: Add functionality to add produts to favorits list
 - `add-router` : Addings routes with react router dom
 - `redesign`: Updating the complete UI and create a basic frontend for a wizard shopping app
+- `fetch-api`: Fetch data from the backend server
+
+## Env Variables
+
+To make use of the backend API server you will need to copy the `.env.development.local.example` into `.env.development.local` and make sure the server address matches your API server's base URL (i.e. `http://localhost:4000/api/`)
 
 ## Available Scripts
 

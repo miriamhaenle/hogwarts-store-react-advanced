@@ -5,14 +5,15 @@ export default function Cart({ cartItems }) {
   return (
     <Main>
       <h1>Cart</h1>
-      {cartItems.map((item) => (
-        <Item>
-          <h4>{item.name}</h4>
-          <p>
-            {item.price} {item.currency}
-          </p>
-        </Item>
-      ))}
+      {cartItems &&
+        cartItems.map((item) => (
+          <Item key={item._id}>
+            <h4>{item.productId.name}</h4>
+            <p>
+              {item.productId.price} {item.productId.currency ?? 'Galleons'}
+            </p>
+          </Item>
+        ))}
       <Button text="Checkout" />
     </Main>
   );

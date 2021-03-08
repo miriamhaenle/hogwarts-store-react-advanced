@@ -42,9 +42,8 @@ export default function ProductCard({
         </Buttons>
 
         <Tags>
-          {product.tags.map((tag, index) => (
-            <li key={tag + index}>{tag}</li>
-          ))}
+          {product.tags &&
+            product.tags.map((tag, index) => <li key={tag + index}>{tag}</li>)}
         </Tags>
         {product.onSale && <Sale>ON SALE</Sale>}
       </CardContent>

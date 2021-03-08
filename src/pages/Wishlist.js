@@ -13,10 +13,9 @@ export default function Wishlist({
 
   const removeFavoriteProduct = (product) => {
     if (isFavorite(product)) {
-      console.log('fav');
       updateFavorites(
         favoriteProducts.filter(
-          (favoriteProduct) => favoriteProduct.id !== product.id
+          (favoriteProduct) => favoriteProduct._id !== product._id
         )
       );
     }
@@ -26,9 +25,9 @@ export default function Wishlist({
     <Main>
       <h1>Favorite Products</h1>
       <Wrapper>
-        {favoriteProducts.map((product) => (
+        {favoriteProducts.map((product, index) => (
           <ProductCard
-            key={product.id}
+            key={product._id + index}
             product={product}
             onAddToFavorites={() => removeFavoriteProduct(product)}
             isFavorite={() => isFavorite(product)}

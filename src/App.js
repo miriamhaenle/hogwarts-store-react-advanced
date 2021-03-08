@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Switch, Route } from 'react-router-dom';
 import { useLocalStorage } from './hooks/useLocalStorage';
@@ -14,13 +15,21 @@ import { ReactComponent as HomeSupplies } from './assets/mortar.svg';
 import { ReactComponent as Snacks } from './assets/snack.svg';
 
 function App() {
+  const apiServerURL = process.env.REACT_APP_API_SERVER_URL;
   const [products, setProducts] = useLocalStorage('Products', []);
 
   const [favoriteProducts, setFavoriteProducts] = useLocalStorage(
     'FavoriteProducts',
     []
   );
-  const [cartItems, setCartItems] = useLocalStorage('Cart', []);
+  const [cart, setCart] = useLocalStorage('Cart', []);
+
+  useEffect(() => {
+    fetch(apiServerURL + '/products')
+      .then((result) => result.json())
+      .then((products) => setProducts(products))
+      .catch((error) => console.error(error.message));
+  }, []);
 
   const categoryPlaceholders = {
     'Magical artifacts': <Wand />,
@@ -59,9 +68,20 @@ function App() {
   };
 
   const addToCart = (product) => {
-    console.log('click');
-    console.log(product);
-    setCartItems([...cartItems, product]);
+    console.log('Add to cart');
+    fetch(apiServerURL + '/shopping-cart/60427bc46b001b45c5485064', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        orderItem: {
+          productId: product._id,
+          quantity: 1,
+        },
+      }),
+    })
+      .then((result) => result.json())
+      .then((cart) => setCart(cart))
+      .catch((error) => console.error(error.message)); //todo: update naming
   };
   return (
     <>
@@ -90,7 +110,7 @@ function App() {
           />
         </Route>
         <Route path="/cart">
-          <Cart cartItems={cartItems} />
+          <Cart cartItems={cart.orderItems} />
         </Route>
       </Switch>
     </>
