@@ -41,7 +41,11 @@ export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
       <label htmlFor="tags">{headline}</label>
       <TagsContainer>
         {tags?.map((tag, index) => (
-          <Tag key={index + tag} selected={selectedTagIndex === index}>
+          <Tag
+            key={index + tag}
+            selected={selectedTagIndex === index}
+            data-testid="tag"
+          >
             {tag}
             <span onClick={() => onDeleteTag(tag)}>&times;</span>
           </Tag>
@@ -53,6 +57,7 @@ export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           placeholder="Write here"
+          data-testid="tag-input"
         />
       </TagsContainer>
     </>
