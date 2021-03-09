@@ -45,6 +45,7 @@ export default function Tags({ headline, tags, onUpdateTags, onDeleteTag }) {
             key={index + tag}
             selected={selectedTagIndex === index}
             data-testid="tag"
+            data-selected={selectedTagIndex === index ? 'selected' : ''}
           >
             {tag}
             <span onClick={() => onDeleteTag(tag)}>&times;</span>
