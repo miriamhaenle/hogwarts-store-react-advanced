@@ -13,6 +13,9 @@ Overview branches
 - `favorite-products`: Add functionality to add produts to favorits list
 - `add-router` : Addings routes with react router dom
 - `redesign`: Updating the complete UI and create a basic frontend for a wizard shopping app
+- `fetch-api`: Connecting the app to the backend (https://github.com/miriamhaenle/wizard-shop-api)
+- `components-and-unit-tests`: Component test for Tag component using react testing library
+- `e2e-test`: end-to-end test for Tag component using cypress
 
 ## Available Scripts
 
